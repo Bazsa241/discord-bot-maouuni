@@ -14,6 +14,7 @@ const foodMsg = [
 
 const usrMsgPercent = 5
 const robotEmojiPercent = 10
+const botReactions = ['🤖', '👾', '🦾', '🕵️', '👀', '🦠']
 let pingCounter = {}
 let fruitsCounter = 0
 
@@ -49,7 +50,8 @@ client.on('message', message => {
   }
 
   if (robotEmojiPercent >= rnd) {
-    message.react('🤖')
+    const randomReact = Math.floor(Math.random() * botReactions.length)
+    message.react(botReactions[randomReact])
   }
 
   if (msg.includes("love")) {
@@ -77,11 +79,9 @@ client.on('message', message => {
     // console.log(message.author);
   }
 
-  if (msg === "hey" || msg === "maouuni") {
+  if (msg === "hey") {
       message.channel.send("Hey " + message.author.username +  "! How are you?")
-  }
-
-  if (msg.includes("maouuni")) {
+  } else if (msg.includes("maouuni")) {
     message.channel.send("Yes?")
   }
 
